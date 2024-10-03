@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h3>Server Time:</h3>
+        <p id="serverTime">{{ server_time }}</p>
+    </div>
+    <div>
+        <h3>Browser Time:</h3>
+        <p id="browserTime"></p>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="/static/js/browserTime.js"></script>
+{% endblock %}

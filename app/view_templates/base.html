@@ -1,0 +1,36 @@
+<!-- Base Template for the application that will be extended by other templates -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include "./partials/dependencies.html" ignore missing with context %}
+    {% include "./partials/head.html" ignore missing with context %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          {% include "./partials/nav.html" ignore missing with context %}
+        </nav>
+    </header>
+
+    <!-- Main content  -->
+    <main>
+        <div class="d-flex justify-content-center m-4">
+            <div class="card">
+                <div class="card-header">
+                    {% block header %}{% endblock %}
+                </div>
+                <div class="card-body">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Extra JavaScript -->
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

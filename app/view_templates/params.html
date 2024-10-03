@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Params{% endblock %}
+
+{% block header %}
+    Params Page
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Welcome {{ name }}</h1>
+        {% if not name %}
+            <h4>Try changing the URL to /params?name='your name'</h4>
+        {% endif %}
+    </div>
+{% endblock %}
