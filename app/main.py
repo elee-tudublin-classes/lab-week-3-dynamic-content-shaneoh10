@@ -34,9 +34,9 @@ async def apod(request: Request):
 
 
 @app.get("/params", response_class=HTMLResponse)
-async def params(request: Request):
+async def params(request: Request, name: str | None = ""):
     """Return the params.html page."""
-    return templates.TemplateResponse(request=request, name="params.html")
+    return templates.TemplateResponse("params.html", {"request": request, "name": name})
 
 
 app.mount(
