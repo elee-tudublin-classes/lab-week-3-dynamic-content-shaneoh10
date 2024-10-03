@@ -7,5 +7,16 @@
 {% endblock %}
 
 {% block content %}
-    Welcome to the Home Page!
+    <div class="server-div">
+        <h3>Server Time:</h3>
+        <p id="serverTime">{{ server_time }}</p>
+    </div>
+    <div class="browser-div">
+        <h3>Browser Time:</h3>
+        <p id="browserTime"></p>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="/static/js/browserTime.js"></script>
 {% endblock %}
