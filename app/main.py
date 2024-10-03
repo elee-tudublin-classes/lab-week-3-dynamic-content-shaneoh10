@@ -13,6 +13,10 @@ from starlette.config import Config
 # Load environment variables from .env
 config = Config(".env")
 
+# Get URL values from the .env file
+ADVICE_URL = config("ADVICE_URL")
+APOD_URL = f"{config("NASA_APOD_URL")}{config("NASA_API_KEY")}"
+
 
 # Create an async context manager to handle the lifespan of the app
 @asynccontextmanager
@@ -42,10 +46,9 @@ async def index(request: Request):
 @app.get("/advice", response_class=HTMLResponse)
 async def advice(request: Request):
     """Return the advice.html page. Gets data from external advice API."""
-
     requests_client = request.app.requests_client
 
-    response = await requests_client.get(config("ADVICE_URL"))
+    response = await requests_client.get(ADVICE_URL)
 
     return templates.TemplateResponse(
         "advice.html", {"request": request, "data": response.json()}
@@ -54,8 +57,14 @@ async def advice(request: Request):
 
 @app.get("/apod", response_class=HTMLResponse)
 async def apod(request: Request):
-    """Return the apod.html page."""
-    return templates.TemplateResponse(request=request, name="apod.html")
+    """Return the apod.html page. Get data from external APOD API."""
+    requests_client = request.app.requests_client
+
+    response = await requests_client.get(APOD_URL)
+
+    return templates.TemplateResponse(
+        "apod.html", {"request": request, "data": response.json()}
+    )
 
 
 @app.get("/params", response_class=HTMLResponse)

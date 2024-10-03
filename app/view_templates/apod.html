@@ -7,5 +7,10 @@
 {% endblock %}
 
 {% block content %}
-    Welcome to the Apod Page!
+    <h1>NASA Astronomy Picture of the Day - {{ data.date }}</h1>
+    <div>
+        <img src="{{ data.url }}" alt="{{ data.title }}" class="img-fluid mt-2">
+        <h2 class="mt-2">{{ data.title }}</h2>
+        <p class="mt-2">{{ data.explanation }}</p>
+    </div>
 {% endblock %}
